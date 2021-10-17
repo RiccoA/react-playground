@@ -1,3 +1,10 @@
+## Todo
+- Add axios
+- Add loading state for api call
+- Add generic api call 
+- add port
+- Add form 
+- Add modal
 # Getting Started with Create React App
 
 
