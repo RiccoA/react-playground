@@ -1,12 +1,14 @@
-import './App.css';
-import { DataFetching } from './featues/DataFetching';
+import "./App.css"
+import FormikComponentsPlay from "./featues/forms/formikComponentsPlay"
 
 function App() {
   return (
     <div className="App">
-      <DataFetching />
+      {/* <DataFetching /> */}
+      {/* <FormikPlay /> */}
+      <FormikComponentsPlay />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
