@@ -1,4 +1,8 @@
+// Todo
+// add checkbox and select
+// checkout formik helper for disabling button
 import { FieldHookConfig, Form, Formik, FormikHelpers, useField } from "formik"
+
 import { ReactNode } from "react"
 
 const MyTextInput = (props: FieldHookConfig<string>) => {
@@ -68,9 +72,13 @@ function FormikComponentsPlay() {
     <>
       <h1>Subscribe!</h1>
       <MyForm initialValues={initValues} onSubmit={onSubmit}>
-        <MyTextInput name="firstName" type="text" placeholder="Jane" />
+        {() => (
+          <>
+            <MyTextInput name="firstName" type="text" placeholder="Jane" />
 
-        <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
+          </>
+        )}
       </MyForm>
     </>
   )
