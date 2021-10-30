@@ -2,6 +2,7 @@
 // add checkbox and select
 // checkout formik helper for disabling button
 import {
+  Field,
   FieldHookConfig,
   Form,
   Formik,
@@ -37,6 +38,7 @@ const MyButton = () => {
   const { isSubmitting } = useFormikContext()
   return (
     <button type="submit" disabled={isSubmitting}>
+      isSubmitting: {isSubmitting.toString()}
       Submit
     </button>
   )
@@ -51,7 +53,7 @@ interface MyFormProps {
   onSubmit: (
     values: MyValues,
     setSubmitting: (isSubmitting: boolean) => void
-  ) => void
+  ) => void | Promise<any>
   children: ReactNode
 }
 
@@ -70,7 +72,7 @@ function MyForm({ initialValues, onSubmit, children }: MyFormProps) {
     values: MyValues,
     { setSubmitting }: FormikHelpers<MyValues>
   ) => {
-    onSubmit(values, setSubmitting)
+    return onSubmit(values, setSubmitting)
   }
   return (
     <>
@@ -93,6 +95,8 @@ function FormikComponentsPlay() {
     acceptedTerms: false, // added for our checkbox
     dogs: ["poo", ""],
     jobType: "", // added for our select
+    isDog: false,
+    symptoms: [],
   }
   // on submit scenario
   // submit to server
@@ -101,15 +105,11 @@ function FormikComponentsPlay() {
   // else data is good
   // show data? go to next page?
 
+  // const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms))
+
   // anytime I want to submit something, my submit function must take a setSubmitting, and values parameter
-  function sendData(
-    values: MyValues,
-    setSubmitting: (isSubmitting: boolean) => void
-  ) {
-    setTimeout(() => {
-      console.log("values", values)
-      setSubmitting(false)
-    }, 500)
+  async function sendData(values: MyValues) {
+    console.log(JSON.stringify(values, null, 2))
   }
 
   // const onSubmit = (
@@ -130,6 +130,25 @@ function FormikComponentsPlay() {
         <MyTextInput name="firstName" type="text" placeholder="Jane" />
         <MyTextInput name="dogs[0]" type="text" placeholder="" />
         <MyTextInput name="dogs[1]" type="text" placeholder="" />
+        <label>
+          <Field type="checkbox" name="isDog" />
+          Is Dog?
+        </label>
+
+        <div role="group" aria-labelledby="checkbox-group">
+          <label>
+            <Field type="checkbox" name="symptoms" value="One" />
+            One
+          </label>
+          <label>
+            <Field type="checkbox" name="symptoms" value="Two" />
+            Two
+          </label>
+          <label>
+            <Field type="checkbox" name="symptoms" value="Three" />
+            Three
+          </label>
+        </div>
         <MyButton />
       </MyForm>
     </>
