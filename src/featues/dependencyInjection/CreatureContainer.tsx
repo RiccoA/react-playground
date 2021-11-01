@@ -10,8 +10,10 @@ export default function CreatureContainer() {
   return (
     <>
       <DigimonBoxEnhancedTwo />
+      <br />
       <PokemonBoxEnhancedTwo />
-      <MutltiCreatureEnchancedTwo />
+      <br />
+      <MutltiCreatureEnchancedTwo extraStuff="Hey" />
     </>
   )
 }

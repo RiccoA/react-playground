@@ -1,13 +1,11 @@
-import { ComponentType } from "react"
+import { ComponentType, useContext } from "react"
+import { DataContext } from "../../App"
 import { DigimonBoxProps } from "./digimonBox"
 import {
   DigimonRepositoryCreator,
   IDigimonRepository,
 } from "./digimonRepository"
-import {
-  IPokemonRepository,
-  PokemonRepositoryCreator,
-} from "./pokemonRepository"
+import { IPokemonRepository } from "./pokemonRepository"
 
 // interface IData {
 //   digimonRepository: IDigimonRepository
@@ -58,11 +56,18 @@ type DataComponent = {
   digimonRepository: IDigimonRepository
 }
 
-export function withAllData(Component: ComponentType<DataComponent>) {
-  const digimonRepository = DigimonRepositoryCreator()
-  const pokemonRepository = PokemonRepositoryCreator()
-  return withInjectedProps({ digimonRepository, pokemonRepository })(Component)
+export function withAllData<T extends DataComponent>(
+  Component: ComponentType<T>
+) {
+  const container = useContext(DataContext)
+  // const digimonRepository = DigimonRepositoryCreator()
+  // const pokemonRepository = PokemonRepositoryCreator()
+  // const container = { digimonRepository, pokemonRepository }
+  return withInjectedProps({ ...container })(Component)
 }
 
 // pass in a container that holds all of the repositories
 // spread them out to withInjected props
+// container that has all repos in it
+// saved in context
+// gotten from context
