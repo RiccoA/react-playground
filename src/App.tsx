@@ -1,12 +1,13 @@
 import "./App.css"
-import FormikComponentsPlay from "./featues/forms/formikComponentsPlay"
+import CreatureContainer from "./featues/dependencyInjection/CreatureContainer"
 
 function App() {
   return (
     <div className="App">
       {/* <DataFetching /> */}
       {/* <FormikPlay /> */}
-      <FormikComponentsPlay />
+      {/* <FormikComponentsPlay /> */}
+      <CreatureContainer />
     </div>
   )
 }
