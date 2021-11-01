@@ -1,13 +1,11 @@
 export interface IPokemonRepository {
-  (): { 
-    get: () => { name: string}
-  } 
+  get: () => { name: string}
 }
 
-export const PokemonRepository : IPokemonRepository  = () => {
+export const PokemonRepositoryCreator = () :IPokemonRepository => {
 
   function get() {
-    return { name: "Agumon" }
+    return { name: "pikachu" }
   }
 
   return {

@@ -1,13 +1,14 @@
 import { DigimonBox } from "./digimonBox"
-import { WithData } from "./WithData"
+import { PokemonBox } from "./pokemonBox"
+import { withAllData } from "./WithData"
 
 export default function CreatureContainer() {
-  // const digimonRepo = DigimonRepositoryCreator()
-  const DigimonBoxEnhanced = WithData()(DigimonBox)
-  // const DigimonBoxEnhanced = WithDataTwo(DigimonBox)
+  const DigimonBoxEnhancedTwo = withAllData(DigimonBox)
+  const PokemonBoxEnhancedTwo = withAllData(PokemonBox)
   return (
     <>
-      <DigimonBoxEnhanced />
+      <DigimonBoxEnhancedTwo />
+      <PokemonBoxEnhancedTwo />
     </>
   )
 }
