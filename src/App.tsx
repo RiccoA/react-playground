@@ -1,6 +1,5 @@
 import "./App.css"
-import CreatureContainer from "./featues/dependencyInjection/CreatureContainer"
-import { RepositoryContainerContext } from "./featues/dependencyInjection/RepositoryContext"
+import { PokemonNamePlate } from "./featues/testingHooks/PokemonNamePlate"
 
 function App() {
   return (
@@ -8,9 +7,10 @@ function App() {
       {/* <DataFetching /> */}
       {/* <FormikPlay /> */}
       {/* <FormikComponentsPlay /> */}
-      <RepositoryContainerContext>
+      {/* <RepositoryContainerContext>
         <CreatureContainer />
-      </RepositoryContainerContext>
+      </RepositoryContainerContext> */}
+      <PokemonNamePlate />
     </div>
   )
 }
