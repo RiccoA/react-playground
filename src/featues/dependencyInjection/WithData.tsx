@@ -1,11 +1,11 @@
-import { ComponentType, useContext } from "react"
-import { DataContext } from "../../App"
+import { ComponentType } from "react"
 import { DigimonBoxProps } from "./digimonBox"
 import {
   DigimonRepositoryConsumer,
   DigimonRepositoryCreator,
 } from "./digimonRepository"
 import { PokemonRepositoryConsumer } from "./pokemonRepository"
+import { UseRepositoryContainer } from "./RepositoryContext"
 import { YugiohRepositoryConsumer } from "./yugiohRepository"
 
 // interface IData {
@@ -69,7 +69,9 @@ type InjectProps = Partial<DigimonRepositoryConsumer> &
 export function InjectRepositories<T extends InjectProps>(
   Component: ComponentType<T>
 ) {
-  const container = useContext(DataContext)
+  const container = UseRepositoryContainer()
+
+  // if component is of certain type, add repo?
 
   const componentWithData = (props: Omit<T, keyof InjectProps>) => {
     const newProps = { ...props, ...container } as T

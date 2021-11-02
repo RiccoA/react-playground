@@ -1,15 +1,6 @@
-import { createContext } from "react"
 import "./App.css"
 import CreatureContainer from "./featues/dependencyInjection/CreatureContainer"
-import { DigimonRepositoryCreator } from "./featues/dependencyInjection/digimonRepository"
-import { PokemonRepositoryCreator } from "./featues/dependencyInjection/pokemonRepository"
-import { YugiohRepositoryCreator } from "./featues/dependencyInjection/yugiohRepository"
-
-const digimonRepository = DigimonRepositoryCreator()
-const pokemonRepository = PokemonRepositoryCreator()
-const yugiohRepository = YugiohRepositoryCreator()
-const container = { digimonRepository, pokemonRepository, yugiohRepository }
-export const DataContext = createContext(container)
+import { RepositoryContainerContext } from "./featues/dependencyInjection/RepositoryContext"
 
 function App() {
   return (
@@ -17,9 +8,9 @@ function App() {
       {/* <DataFetching /> */}
       {/* <FormikPlay /> */}
       {/* <FormikComponentsPlay /> */}
-      <DataContext.Provider value={container}>
+      <RepositoryContainerContext>
         <CreatureContainer />
-      </DataContext.Provider>
+      </RepositoryContainerContext>
     </div>
   )
 }
