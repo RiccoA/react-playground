@@ -1,8 +1,6 @@
-import { IDigimonRepository } from "./digimonRepository"
+import { DigimonRepositoryConsumer } from "./digimonRepository"
 
-export interface DigimonBoxProps {
-  digimonRepository: IDigimonRepository
-}
+export interface DigimonBoxProps extends DigimonRepositoryConsumer {}
 
 export function DigimonBox({ digimonRepository }: DigimonBoxProps) {
   const data = digimonRepository.get()

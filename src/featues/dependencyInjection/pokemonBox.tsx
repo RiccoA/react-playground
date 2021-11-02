@@ -1,8 +1,6 @@
-import { IPokemonRepository } from "./pokemonRepository"
+import { PokemonRepositoryConsumer } from "./pokemonRepository"
 
-export interface PokemonBoxProps {
-  pokemonRepository: IPokemonRepository
-}
+export interface PokemonBoxProps extends PokemonRepositoryConsumer {}
 
 export function PokemonBox({ pokemonRepository }: PokemonBoxProps) {
   const data = pokemonRepository.get()

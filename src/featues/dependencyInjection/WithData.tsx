@@ -2,10 +2,11 @@ import { ComponentType, useContext } from "react"
 import { DataContext } from "../../App"
 import { DigimonBoxProps } from "./digimonBox"
 import {
+  DigimonRepositoryConsumer,
   DigimonRepositoryCreator,
-  IDigimonRepository,
 } from "./digimonRepository"
-import { IPokemonRepository } from "./pokemonRepository"
+import { PokemonRepositoryConsumer } from "./pokemonRepository"
+import { YugiohRepositoryConsumer } from "./yugiohRepository"
 
 // interface IData {
 //   digimonRepository: IDigimonRepository
@@ -51,23 +52,29 @@ export function withInjectedProps<U extends Record<string, unknown>>(
   }
 }
 
-type DataComponent = {
-  pokemonRepository: IPokemonRepository
-  digimonRepository: IDigimonRepository
-}
+type InjectProps = Partial<DigimonRepositoryConsumer> &
+  Partial<PokemonRepositoryConsumer> &
+  Partial<YugiohRepositoryConsumer>
 
-export function withAllData<T extends DataComponent>(
+// type DataComponent = PokemonRepositoryConsumer & DigimonRepositoryConsumer
+
+// export function withAllData<T extends InjectProps>(
+//   Component: ComponentType<T>
+// ) {
+//   // automatically inject all data services into children
+//   const container = useContext(DataContext)
+//   return withInjectedProps({ ...container })(Component)
+// }
+
+export function InjectRepositories<T extends InjectProps>(
   Component: ComponentType<T>
 ) {
   const container = useContext(DataContext)
-  // const digimonRepository = DigimonRepositoryCreator()
-  // const pokemonRepository = PokemonRepositoryCreator()
-  // const container = { digimonRepository, pokemonRepository }
-  return withInjectedProps({ ...container })(Component)
-}
 
-// pass in a container that holds all of the repositories
-// spread them out to withInjected props
-// container that has all repos in it
-// saved in context
-// gotten from context
+  const componentWithData = (props: Omit<T, keyof InjectProps>) => {
+    const newProps = { ...props, ...container } as T
+    return <Component {...newProps} />
+  }
+
+  return componentWithData
+}
