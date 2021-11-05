@@ -1,13 +1,18 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useFetchPokemon } from "./fetchPokemon.hook"
 
 export const usePokemonNamePlate = () => {
-  const {isLoading, name, api } = useFetchPokemon()
+  const [name, setName] = useState("")
+  const {isLoading, api } = useFetchPokemon()
 
   const favoriteBerries = "Lon Berries"
 
   useEffect(() => {
-    api.get()
+    async function fetch() {
+      const name = await api.get()
+      setName(name)
+    }
+    fetch()
   }, [])
 
   return {isLoading, name, favoriteBerries}

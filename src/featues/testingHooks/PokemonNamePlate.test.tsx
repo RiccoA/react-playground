@@ -8,6 +8,7 @@ const usePokemonNamePlateMock = usePokemonNamePlate as jest.MockedFunction<
   typeof usePokemonNamePlate
 >
 
+// this test mocks a useEffects return values
 it("Can show name", () => {
   usePokemonNamePlateMock.mockReturnValue({
     isLoading: true,
